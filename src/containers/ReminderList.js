@@ -74,7 +74,6 @@ function ReminderList(props) {
               <SingleReminder
                 key={data.id}
                 reminderData={data}
-                name="upcomingReminder"
               />
             ))}
           </tbody>

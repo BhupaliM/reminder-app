@@ -17,7 +17,7 @@ function SingleReminder(props) {
       <td>{props.reminderData.title}</td>
       <td>{props.reminderData.reminderDateTime}</td>
       <td><button name="delete" onClick={onClick}>Delete</button></td>
-      <td>{props.name === "upcomingReminder" ? <button name="update" onClick={onClick}>Update</button> : ""}</td>
+      <td><button name="update" onClick={onClick}>Update</button></td>
     </tr>
   )
 }
