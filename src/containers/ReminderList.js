@@ -18,6 +18,15 @@ function ReminderList(props) {
 
   }, [])
 
+  function convertDateTime(dateTimeToConvert) {
+    let date = new Date(dateTimeToConvert)
+    let time = date.toLocaleTimeString().split(':')
+    let amOrPm = time[0] < 12 ? 'AM' : 'PM'
+    time[0] = time[0] % 12 || 12;
+
+    return (date.toDateString() + ', ' + time.join(':') + ' ' + amOrPm)
+  }
+
   function getReminders() {
     const currentState = store.getState()
     let todayDate = new Date()
@@ -41,43 +50,30 @@ function ReminderList(props) {
 
   return (
     <div className="row">
-      <div className="col-sm-4">
-        Past Reminders
-        <table className="table">
-          <thead>
-            <tr>
-              <th>Title</th>
-              <th>Date-Time</th>
-            </tr>
-          </thead>
-          <tbody>
-            {existingReminders.oldReminders.map((data, index) => (
-              <SingleReminder
-                key={data.id}
-                reminderData={data}
-              />
-            ))}
-          </tbody>
-        </table>
+      <div className="col-sm-6">
+        <label className="reminders-label reminders-label-size">Past Reminders</label>
+        {existingReminders.oldReminders.map((data, index) => {
+          let userDate = convertDateTime(data.reminderDateTime)
+          return <SingleReminder
+            key={data.id}
+            title={data.title}
+            date={userDate}
+            id={data.id}
+          />
+        })}
       </div>
-      <div className="col-sm-4">
-        Up-coming Reminders
-        <table className="table">
-          <thead>
-            <tr>
-              <th>Title</th>
-              <th>Date-Time</th>
-            </tr>
-          </thead>
-          <tbody>
-            {existingReminders.newReminders.map((data, index) => (
-              <SingleReminder
-                key={data.id}
-                reminderData={data}
-              />
-            ))}
-          </tbody>
-        </table>
+
+      <div className="col-sm-6">
+        <label className="reminders-label reminders-label-size">Up-Coming Reminders</label>
+        {existingReminders.newReminders.map((data, index) => {
+          let userDate = convertDateTime(data.reminderDateTime)
+          return <SingleReminder
+            key={data.id}
+            title={data.title}
+            date={userDate}
+            id={data.id}
+          />
+        })}
       </div>
     </div>
   );

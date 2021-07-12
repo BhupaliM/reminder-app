@@ -5,9 +5,17 @@ import ReminderList from './containers/ReminderList.js';
 
 function App() {
   return (
-    <div className="App">
-      <AddReminder />
-      <ReminderList />
+    <div className="container-fluid">
+      <h4 className="reminder-container reminders-label">Reminder System</h4>
+      <br />
+      <div className="row">
+        <div className="col-sm-6">
+          <AddReminder />
+        </div>
+        <div className="col-sm-6">
+          <ReminderList />
+        </div>
+      </div>
     </div>
   );
 }

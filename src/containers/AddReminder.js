@@ -55,21 +55,27 @@ function AddReminder(props) {
 
   return (
     <div className="reminder-container">
-      <div className="row">
-        <div className="col-sm-2">
-          <input type="text" onChange={(e) => setTitle(e.target.value)} value={title} placeholder="Enter Title" />
-          <span className="error">{error.titleError}</span>
+      <div className="input-group mb-3">
+        <div className="input-group-prepend">
+          <span className="input-group-text">Title</span>
         </div>
-
-        <div className="col-sm-2">
-          <input type="datetime-local" onChange={(e) => setReminder(e.target.value)} value={reminder} />
-          <span className="error">{error.reminderError}</span>
-        </div>
-
-        <div className="col-sm-2">
-          <button onClick={handleSubmit}>Add Reminder</button>
+        <div><input type="text" class="form-control" onChange={(e) => setTitle(e.target.value)} value={title} placeholder="Enter Title" /></div>
+        <div className="col-sm-3">
+          <span className="help-block error">{error.titleError}</span>
         </div>
       </div>
+
+      <div className="input-group mb-3">
+        <div className="input-group-prepend">
+          <span class="input-group-text">DateTime</span>
+        </div>
+        <div><input type="datetime-local" class="form-control" onChange={(e) => setReminder(e.target.value)} value={reminder} /></div>
+        <div className="col-sm-5">
+          <span className="help-block error">{error.reminderError}</span>
+        </div>
+      </div>
+
+      <button type="button" class="btn btn-success" onClick={handleSubmit}>Add Reminder</button>
     </div>
   );
 }
