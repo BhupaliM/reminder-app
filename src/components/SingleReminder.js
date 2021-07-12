@@ -1,4 +1,4 @@
-import { deleteReminder, editReminder } from '../actions/ReminderActions.js';
+import { deleteReminder, editReminder } from '../reducers/Reminder.js';
 import { connect } from 'react-redux';
 
 function SingleReminder(props) {

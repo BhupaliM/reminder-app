@@ -1,7 +1,7 @@
 import './style.css'
 import { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { addReminder, editReminder } from '../actions/ReminderActions.js';
+import { addReminder } from '../reducers/Reminder.js';
 
 function AddReminder(props) {
   const [title, setTitle] = useState('');
@@ -47,7 +47,11 @@ function AddReminder(props) {
     }
     else {
       alert("Reminder added successfully");
-      props.addReminder(title, reminder);
+      props.addReminder({
+        id: Math.floor(Math.random() * 1000),
+        title: title,
+        reminderDateTime: reminder
+      });
       setTitle('')
       setReminder('')
     }
@@ -75,10 +79,10 @@ function AddReminder(props) {
 }
 
 const mapStateToProps = state => ({
-  currentData: state.Reminder.currentReminder
+  currentData: state.reminder.currentReminder
 })
 
 export default connect(
   mapStateToProps,
-  { addReminder, editReminder }
+  { addReminder }
 )(AddReminder)
