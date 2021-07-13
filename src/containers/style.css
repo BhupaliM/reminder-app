@@ -1,0 +1,22 @@
+.error{
+  margin-left: 5px;
+  font-size: 15px;
+  color: red;
+}
+  
+.reminder-container{
+	margin: 30px;
+}
+
+.reminders-label{
+  display: flex;
+  justify-content: center;
+}
+
+.reminders-label-size{
+  font-size: 20px;
+}
+
+.reminders-heading-size{
+  font-size: 18px;
+}

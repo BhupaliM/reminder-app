@@ -1,23 +1,21 @@
-import logo from './logo.svg';
 import './App.css';
+
+import AddReminder from './containers/AddReminder.js'
+import ReminderList from './containers/ReminderList.js';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container-fluid">
+      <h4 className="reminder-container reminders-label">Reminder System</h4>
+      <br />
+      <div className="row">
+        <div className="col-sm-6">
+          <AddReminder />
+        </div>
+        <div className="col-sm-6">
+          <ReminderList />
+        </div>
+      </div>
     </div>
   );
 }
