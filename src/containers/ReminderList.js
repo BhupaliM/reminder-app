@@ -33,7 +33,7 @@ function ReminderList(props) {
     let pastReminders = []
     let upcomingReminders = []
 
-    currentState.Reminder.reminderListByID.forEach(data => {
+    currentState.reminder.reminderListByID.forEach(data => {
       if ((data.reminderDateTime.split('T')[1] < todayDate.toLocaleTimeString()) && ([todayDate.getFullYear(), ("0" + (todayDate.getMonth() + 1)).slice(-2), ("0" + todayDate.getDate()).slice(-2)].join('-') >= data.reminderDateTime.split('T')[0])) {
         pastReminders.push(data)
       }

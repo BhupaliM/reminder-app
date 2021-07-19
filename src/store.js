@@ -1,9 +1,10 @@
-import { createStore } from "redux";
-import rootReducer from './reducers';
+import { configureStore } from "@reduxjs/toolkit";
+import reminderReducer from './reducers/Reminder.js'
 
-const store = createStore(
-  rootReducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-)
+const store = configureStore({
+  reducer: {
+    reminder: reminderReducer,
+  },
+})
 
 export default store;

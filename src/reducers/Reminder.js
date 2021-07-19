@@ -1,49 +1,33 @@
-import { ADD_REMINDER, DELETE_REMINDER, EDIT_REMINDER } from '../constants/actionTypes.js';
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   reminderListByID: [],
   currentReminder: {}
 }
 
-const Reminder = (state = initialState, action) => {
-  switch (action.type) {
-    case ADD_REMINDER: {
-      const { id, title, reminderDateTime } = action.payload;
-      return {
-        ...state,
-        reminderListByID: [
-          ...state.reminderListByID,
-          {
-            id: id,
-            title: title,
-            reminderDateTime: reminderDateTime
-          }
-        ],
-        currentReminder: {
-          title: '',
-          reminderDateTime: ''
-        }
+export const reminderSlice = createSlice({
+  name: 'reminder',
+  initialState,
+  reducers: {
+    addReminder: (state, action) => {
+      state.reminderListByID.push(action.payload);
+      state.currentReminder = {
+        title: '',
+        reminderDateTime: ''
       }
-    }
+    },
 
-    case DELETE_REMINDER: {
-      return {
-        ...state,
-        reminderListByID: state.reminderListByID.filter((eachReminder) => eachReminder.id !== action.payload)
-      }
-    }
+    deleteReminder: (state, action) => {
+      state.reminderListByID = state.reminderListByID.filter((eachReminder) => eachReminder.id !== action.payload)
+    },
 
-    case EDIT_REMINDER: {
-      return {
-        ...state,
-        currentReminder: state.reminderListByID.filter((eachReminder) => eachReminder.id === action.payload)[0],
-        reminderListByID: state.reminderListByID.filter((eachReminder) => eachReminder.id !== action.payload)
-      }
-    }
-
-    default:
-      return state
+    editReminder: (state, action) => {
+      state.currentReminder = state.reminderListByID.filter((eachReminder) => eachReminder.id === action.payload)[0]
+      state.reminderListByID = state.reminderListByID.filter((eachReminder) => eachReminder.id !== action.payload)
+    },
   }
-}
+})
 
-export default Reminder
+export const { addReminder, deleteReminder, editReminder } = reminderSlice.actions
+
+export default reminderSlice.reducer
